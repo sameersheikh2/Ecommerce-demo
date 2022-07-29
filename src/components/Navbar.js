@@ -20,9 +20,11 @@ const Navbar = () => {
                         <input type="text" placeholder='Search for producs, brands and more' className='outline-none border-none w-full m-1 pl-4 placeholder:text-gray-400 ' />
                         <SearchIcon style={{ marginRight: '8px', cursor: 'pointer', fontSize: '30px', fill: 'blue' }} />
                     </div>
-                    <div className='bg-white mx-5 px-12 cursor-pointer rounded-sm shadow-sm '>
-                        <button className=' text-blue-500 text-xl font-medium my-[4px]'>Login</button>
-                    </div>
+                    <Link to="/login">
+                        <div className='bg-white mx-5 px-12 cursor-pointer rounded-sm shadow-sm '>
+                            <button className=' text-blue-500 text-xl font-medium my-[4px]'>Login</button>
+                        </div>
+                    </Link>
                 </div>
                 <div>
                     <Link to="/cart">
