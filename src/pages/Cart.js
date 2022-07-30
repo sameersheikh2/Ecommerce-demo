@@ -18,7 +18,7 @@ const Cart = () => {
         <>
             {item.length === 0 ? <div className='w-[30%] h-auto text-center items-center flex-col justify-center mx-auto mt-28 flex'><ProductionQuantityLimitsIcon style={{ fontSize: '65px', fill: "red" }} /><p className='text-2xl pt-2'>Your Cart is empty. Add some item from <Link to="/" className='cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white px-2 rounded'>here.</Link></p></div> : <div className=' rounded-2xl shadow-2xl w-[80%]  h-auto flex flex-col  mx-auto my-20 '>
                 {item.map((item) => (
-                    <div className='flex w-full p-5 ' flex-col key={item.id}>
+                    <div className='flex w-full p-5 my-3' flex-col key={item.id}>
                         <img src={item.image} alt="" className='w-[250px] object-contain' />
                         <div className='flex px-10 flex-wrap flex-col justify-evenly w-[50%]'>
                             <h1 className='text-3xl font-medium'>{item.title}.</h1>
@@ -29,7 +29,7 @@ const Cart = () => {
                                 <p>{item.price?.toFixed(0)}$</p>
                             </div>
                         </div>
-                        <div className='flex justify-end h-auto w-auto items-end '>
+                        <div className='flex justify-end h-auto w-auto items-end  '>
                             <button className='cursor-pointer' onClick={() => removeItemHandler(item.id)}>
                                 <DeleteOutlineOutlinedIcon style={{ fontSize: '25px', fill: 'coral' }} />
                                 Remove</button>
