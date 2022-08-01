@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import store from './store/Store'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
+import AllProducts from './pages/AllProducts'
 
 const App = () => {
   return (
@@ -15,9 +16,10 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/products/:productId" element={<Product />} />
+        <Route path="/all-products/:productId" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login/>}/>
+        <Route path="/all-products" element={<AllProducts/>}/>
       </Routes>
     </Provider>
   )

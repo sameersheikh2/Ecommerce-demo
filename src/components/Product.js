@@ -13,6 +13,7 @@ const ProductItems = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log(params)
         fetch(`https://fakestoreapi.com/products/${params.productId}`)
             .then(res => res.json())
             .then((data) => {
@@ -22,7 +23,6 @@ const ProductItems = () => {
 
     const addToCartHandler = (item) => {
         dispatch(add(item))
-        console.log('called')
     }
 
 

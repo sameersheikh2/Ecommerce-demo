@@ -10,8 +10,8 @@ const Navbar = () => {
 
     return (
         <div className='max-w-[1640px] bg-blue-600/90 mx-auto flex flex-wrap justify-between items-start p-3 shadow-xl'>
-            <div className='flex flex-wrap items-center justify-between w-[85%] mx-auto'>
-                <div className='flex items-center'>
+            <div className='flex flex-wrap items-center justify-between w-[100%] mx-auto'>
+                <div className='flex items-center md:ml-12 sm:ml-12'>
                     <h1 className='mx-1 font-medium text-xl text-white'>
                         <Link to="/">
                             LOGO
@@ -25,18 +25,24 @@ const Navbar = () => {
                             <button className=' text-blue-500 text-xl font-medium my-[4px]'>Login</button>
                         </div>
                     </Link>
+                        
                 </div>
                 <div>
+                    <div className='flex justify-center items-center cursor-pointer'>
+                      <Link to="/all-products">
+                      <div className='mx-4 text-[19px] font-bold text-white'>All Products</div>
+                      </Link>
                     <Link to="/cart">
-                        <div className='flex items-center cursor-pointer'>
+                        <div className='flex items-center'>
                             <Badge badgeContent={items.length} color="warning">
                                 <ShoppingCartIcon style={{ fontSize: '30px', fill: 'white' }} />
                             </Badge>
-                            <button className='text-[19px] px-2 font-bold text-white'>
+                            <button className=' text-[19px] px-2 font-bold text-white'>
                                 Cart
                             </button>
                         </div>
                     </Link>
+                    </div>
                 </div>
             </div>
         </div>
