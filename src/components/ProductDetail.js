@@ -19,7 +19,7 @@ const ProductDetail = () => {
             .then((data) => {
                 setItem(data)
             })
-    }, [])
+    }, [params])
 
     const addToCartHandler = (item) => {
         dispatch(add(item))
