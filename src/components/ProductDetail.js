@@ -13,7 +13,6 @@ const ProductDetail = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log(params)
         fetch(`https://fakestoreapi.com/products/${params.productId}`)
             .then(res => res.json())
             .then((data) => {

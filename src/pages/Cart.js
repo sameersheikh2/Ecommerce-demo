@@ -10,7 +10,6 @@ const Cart = () => {
     const item = useSelector((state) => state.cart)
 
     const removeItemHandler = (itemId) => {
-        console.log(itemId)
         dispatch(remove(itemId))
     }
 
@@ -18,9 +17,9 @@ const Cart = () => {
         <>
             {item.length === 0 ? <div className='w-[30%] h-auto text-center items-center flex-col justify-center mx-auto mt-28 flex'><ProductionQuantityLimitsIcon style={{ fontSize: '65px', fill: "red" }} /><p className='text-2xl pt-2'>Your Cart is empty. Add some item from <Link to="/products" className='cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white px-2 rounded'>here.</Link></p></div> : <div className=' rounded-2xl shadow-2xl w-[80%]  h-auto flex flex-col  mx-auto my-20 '>
                 {item.map((item) => (
-                    <div className='flex w-full p-5 my-3' flex-col key={item.id}>
+                    <div className='flex w-full lg:flex-row sm:flex-row flex-col p-5 my-3' key={item.id}>
                         <img src={item.image} alt="" className='w-[250px] object-contain' />
-                        <div className='flex px-10 flex-wrap flex-col justify-evenly w-[50%]'>
+                        <div className='flex px-10 w-full flex-wrap flex-col justify-evenly '>
                             <h1 className='text-3xl font-medium'>{item.title}.</h1>
                             <div>
                                 <p className='text-lg'>{item.description}</p>

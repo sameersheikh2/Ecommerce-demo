@@ -8,7 +8,6 @@ const Products = () => {
     const fetchProduct = async () => {
       const res = await fetch("https://fakestoreapi.com/products");
       const data = await res.json();
-      console.log(data)
       setProducts(data)
 
     }
@@ -20,7 +19,7 @@ const Products = () => {
     <div className='w-[95%] mx-auto'>
       <h1 className='mt-12 ml-11 text-2xl font-medium'>All Products -</h1>
     <div className='flex flex-wrap gap-4 rounded justify-center mt-[5rem] '>
-          {products.map((product)=>(<ProductList product={product} />) )}
+          {products.map((product)=>(<ProductList product={product} key={product.id} />) )}
     </div>
     </div>
   )
