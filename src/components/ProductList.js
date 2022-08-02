@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import Product from "../components/Product"
+import ProductDetail from './ProductDetail'
 
 const ProductList = ({ product }) => {
     return (
         <div className='h-auto my-12 flex items-center justify-center flex-col w-[400px] hover:scale-[1.02] ease-in-out duration-200 cursor-pointer shadow-xl'>
-            <Link to={`/all-products/${product.id}`} key={product.id} element={<Product />}>
+            <Link to={`/products/${product.id}`} key={product.id} element={<ProductDetail />}>
                 <div className="flex flex-col items-center">
                     <div className='w-[150px]'>
                         <img src={product.image} alt="" className='object-contain w-full h-[215px]' />

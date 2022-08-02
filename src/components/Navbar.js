@@ -29,7 +29,7 @@ const Navbar = () => {
                 </div>
                 <div>
                     <div className='flex justify-center items-center cursor-pointer'>
-                      <Link to="/all-products">
+                      <Link to="/products">
                       <div className='mx-4 text-[19px] font-bold text-white'>All Products</div>
                       </Link>
                     <Link to="/cart">

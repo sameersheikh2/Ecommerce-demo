@@ -16,7 +16,7 @@ const Cart = () => {
 
     return (
         <>
-            {item.length === 0 ? <div className='w-[30%] h-auto text-center items-center flex-col justify-center mx-auto mt-28 flex'><ProductionQuantityLimitsIcon style={{ fontSize: '65px', fill: "red" }} /><p className='text-2xl pt-2'>Your Cart is empty. Add some item from <Link to="/" className='cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white px-2 rounded'>here.</Link></p></div> : <div className=' rounded-2xl shadow-2xl w-[80%]  h-auto flex flex-col  mx-auto my-20 '>
+            {item.length === 0 ? <div className='w-[30%] h-auto text-center items-center flex-col justify-center mx-auto mt-28 flex'><ProductionQuantityLimitsIcon style={{ fontSize: '65px', fill: "red" }} /><p className='text-2xl pt-2'>Your Cart is empty. Add some item from <Link to="/products" className='cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white px-2 rounded'>here.</Link></p></div> : <div className=' rounded-2xl shadow-2xl w-[80%]  h-auto flex flex-col  mx-auto my-20 '>
                 {item.map((item) => (
                     <div className='flex w-full p-5 my-3' flex-col key={item.id}>
                         <img src={item.image} alt="" className='w-[250px] object-contain' />
