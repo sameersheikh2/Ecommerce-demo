@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom"
-import { add } from "../store/UserSlice"
+import { signUp } from "../store/UserSlice"
 
 const Signup = () => {
   const [name, setName] = useState('')
@@ -39,11 +39,11 @@ const Signup = () => {
         password: password,
       }
 
-      dispatch(add(data))
+      dispatch(signUp(data))
       setName('')
       setEmail('')
       setPassword('')
-      navigate('/')
+      navigate('/login')
     }
     // Validataion if needed
   }
