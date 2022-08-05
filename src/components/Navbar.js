@@ -12,6 +12,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const items = useSelector((state) => state.cart)
     const nav = useSelector((state) => state.nav.showNav)
+    const user = useSelector((state) => state.user)
     // const [nav, setNav] = useState(false)
 
     const showNav = () => {
@@ -25,7 +26,7 @@ const Navbar = () => {
 
             <div className='flex flex-wrap items-center justify-between w-[100%] mx-auto'>
                 <div className='flex justify-start md:justify-center flex-wrap items-center md:ml-12 sm:ml-12 '>
-                    <AiOutlineMenu size={30} className='fill-white cursor-pointer ' onClick={showNav} />
+                    <AiOutlineMenu size={30} className='lg:hidden fill-white cursor-pointer' onClick={showNav} />
                     <h1 className='mx-5 text-center font-medium text-xl text-white'>
                         <Link to="/">
                             LOGO
@@ -46,6 +47,7 @@ const Navbar = () => {
                 <div className='flex justify-center items-center cursor-pointer'>
                     <Link to="/cart">
                         <div className='flex items-center justify-start'>
+                            <h1>{user.map((user)=>(user.name))}</h1>
                             <Badge badgeContent={items.length} color="warning">
                                 <ShoppingCartIcon style={{ fontSize: '30px', fill: 'white' }} />
                             </Badge>
