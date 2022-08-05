@@ -44,10 +44,10 @@ const Navbar = () => {
 
                 {/* right section */}
 
-                <div className='flex justify-center items-center cursor-pointer'>
-                    <Link to="/cart">
-                        <div className='flex items-center justify-start'>
+                <div className='flex justify-center items-center '>
                             <h1>{user.map((user)=>(user.name))}</h1>
+                    <Link to="/cart">
+                        <div className='flex items-center justify-start cursor-pointer'>
                             <Badge badgeContent={items.length} color="warning">
                                 <ShoppingCartIcon style={{ fontSize: '30px', fill: 'white' }} />
                             </Badge>

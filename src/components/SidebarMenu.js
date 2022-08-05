@@ -15,7 +15,7 @@ const SidebarMenu = () => {
         <>
             {nav && <div onClick={hideNav} className='w-full h-screen fixed m-0 p-0 bg-black/80 top-0 left-0 z-10'></div>}
             <div className={nav ? 'bg-white w-[300px] h-screen fixed z-10 top-0 left-0 duration-300 ease-in-out' : 'bg-white w-[300px] h-screen fixed z-10 top-0 left-[-100%] duration-300 ease-in-out'}>
-                <AiOutlineClose size={30} onClick={hideNav} className='fixed top-4 left-4 cursor-pointer z-10' />
+                <AiOutlineClose size={30} onClick={hideNav} className='absolute top-4 left-4 cursor-pointer z-10' />
                 <ul className='flex flex-wrap items-center flex-col mt-11 justify-evenly p-4 font-bold text-3xl '>
                     <Link to='/' onClick={hideNav}>
                         <li className='duration-300 ease rounded my-2 tracking-wider p-2 cursor-pointer hover:bg-black hover:text-white'>HOME</li>

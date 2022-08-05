@@ -26,7 +26,7 @@ const ProductDetail = () => {
 
 
     return (
-        <div className='relative flex my-[5rem] max-w-[1340px] h-[auto] md:h-[auto] sm:h-[auto] mx-auto bg-white rounded-xl shadow-2xl'>
+        <div className='relative flex my-[5rem] lg:max-w-[1340px] md:max-w-[750px] h-[auto] md:h-[auto] sm:h-[auto] mx-auto bg-white rounded-xl shadow-2xl'>
             <div className='absolute top-[-14px] right-[-8px]'>
                 <Link to="/products">
                     <AiFillCloseCircle size={35} className="cursor-pointer hover:scale-105 ease-in-out duration-200" />
@@ -40,7 +40,7 @@ const ProductDetail = () => {
                 <div className='flex items-center mt-4'>
                     <p className='flex items-center mx-4 p-1 pr-2 rounded font-medium bg-green-600 hover:scale-[1.02] cursor-pointer group'><AiFillStar className='fill-white mx-1 group-hover:fill-yellow-500' />{item.rating?.rate} / 5</p>
                     <p className='font-medium text-xl px-1'>
-                        ₹{item.price?.toFixed(0)}.00
+                        {item.price?.toFixed(0)}$
                     </p>
                 </div>
                 <div className='mt-[4rem] '>
