@@ -28,12 +28,15 @@ const Cart = () => {
                         </div>
                         <div className="max-w-[100%] justify-between sm:max-w-[50%]  flex flex-wrap flex-col">
                             <div>
-                                <h1 className='text-3xl font-medium'>{item.title}</h1>
-                                <p className='text-base mt-8'>{item.description}</p>
+                                <h1 className='text-3xl mb-5 font-medium'>{item.title}</h1>
+                                <span className='font-medium'>Description:</span>
+                                <p className='text-base mt-3'>{item.description}</p>
                             </div>
                             <div>
                                 <div className="flex mt-6 justify-between items-center ">
-                                    <p className=' font-medium shadow-md rounded bg-green-500 w-16 border-t py-1 text-center'>{item.price?.toFixed(0)}$</p>
+
+                                    <p className=' font-medium shadow-md rounded bg-green-500 w-auto border-t py-1 px-2 text-center'><span>Price: </span>{item.price?.toFixed(0)}$
+                                    </p>
                                     <button className='cursor-pointer hover:shadow-xl hover:scale-[1.04] duration-75 ease' onClick={() => removeItemHandler(item.id)}>
                                         <DeleteOutlineOutlinedIcon style={{ fontSize: '25px', fill: 'coral', }} />
                                         Remove</button>

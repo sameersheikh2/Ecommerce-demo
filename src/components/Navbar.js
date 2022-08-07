@@ -35,17 +35,16 @@ const Navbar = () => {
                         <input type="text" placeholder='Search for producs, brands and more' className='outline-none border-none w-full m-1 pl-4 placeholder:text-gray-400 ' />
                         <SearchIcon style={{ marginRight: '8px', cursor: 'pointer', fontSize: '30px', fill: 'gray' }} />
                     </div>
-                    <Link to="/login" className='lg:inline hidden'>
+                    { <Link to="/login" className='lg:inline hidden'>
                         <div className='bg-white mx-5 px-12 cursor-pointer rounded-sm shadow-sm '>
                             <button className=' text-gray-500 text-xl font-medium my-[4px] '>Login</button>
                         </div>
-                    </Link>
+                    </Link>}
                 </div>
 
                 {/* right section */}
 
                 <div className='flex justify-center items-center '>
-                            <h1>{user.map((user)=>(user.name))}</h1>
                     <Link to="/cart">
                         <div className='flex items-center justify-start cursor-pointer'>
                             <Badge badgeContent={items.length} color="warning">
