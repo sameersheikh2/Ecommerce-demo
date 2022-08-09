@@ -5,23 +5,35 @@ import TuneIcon from "@mui/icons-material/Tune";
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilterOption, setShowFilterOption] = useState(false);
 
   useEffect(() => {
     (async () => {
-      try {
-        const res = await fetch("https://fakestoreapi.com/products");
-        const data = await res.json();
-        setProducts(data);
-      } catch (err) {
-        // const message = (err)
-        console.log(err);
+      const allProducts = localStorage.getItem("products");
+      if (allProducts) {
+        setProducts(JSON.parse(allProducts));
+      } else {
+        try {
+          const res = await fetch("https://fakestoreapi.com/products");
+          const data = await res.json();
+          localStorage.setItem("products", JSON.stringify(data));
+          setProducts(data);
+        } catch (err) {
+          // const message = (err)
+          console.log(err);
+        }
       }
     })();
   }, []);
 
   const productFilterHandler = (filteredValue) => {
     console.log(filteredValue);
+    setProducts(
+      products.filter((item) => {
+        return item.category === filteredValue;
+      })
+    );
+    console.log(products);
   };
 
   return (
@@ -31,12 +43,12 @@ const Products = (props) => {
         <button
           className="mt-4 ml-7 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "
           onClick={() => {
-            setShowFilter(!showFilter);
+            setShowFilterOption(!showFilterOption);
           }}
         >
           <TuneIcon style={{ fontSize: "17px", marginTop: "0px" }} /> Filter
         </button>
-        {showFilter && <Filter onFilter={productFilterHandler} />}
+        {showFilterOption && <Filter onFilter={productFilterHandler} />}
         <div className="flex flex-wrap gap-4 rounded justify-center">
           {products.map((product) => (
             <ProductList product={product} key={product.id} />
