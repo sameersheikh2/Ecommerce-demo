@@ -4,7 +4,7 @@ import hero from "../assets/hero.jpg";
 
 const Hero = () => {
   return (
-    <div className="max-w-[1320px] mx-11 mt-11 relative">
+    <div className="max-w-[100%] mx-11 mt-11 relative">
       {/* overlay */}
       <div className="flex flex-col flex-wrap items-center justify-center absolute  ease w-full h-full ">
         <Link to="/products">

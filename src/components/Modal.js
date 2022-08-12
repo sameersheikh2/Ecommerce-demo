@@ -16,18 +16,18 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   return (
     <div
-      className="fixed top-[20%] left-[25%] right-[25%] lg:max-w-[50%] md:max-w-[45%]  h-[51%] lg:h-[60%] sm:h-[55%] md:h-[46%] z-[100] bg-white rounded shadow-3xl flex flex-wrap translate-y-10 duration-200 
+      className="fixed top-[20%] left-[25%] right-[25%] lg:max-w-[50%] md:max-w-[45%]  sm:h-auto h-[50%] z-[100] bg-white rounded shadow-3xl flex flex-wrap translate-y-10 duration-200 
     ease"
     >
       <GrClose
-        size={12}
+        size={15}
         className="absolute z-10 top-2 right-3 cursor-pointer"
         onClick={props.onClose}
       />
       <div className="w-[41%] h-[100%] hidden md:inline">
         <img src={popUp} alt="" className="object-contain h-[100%] rounded" />
       </div>
-      <div className="flex flex-col flex-wrap lg:w-[50%] sm:w-[30%] justify-evenly items-center ml-10">
+      <div className="flex flex-col flex-wrap lg:w-[50%] sm:w-[30%]  justify-evenly items-center ml-10">
         <h1 className="lg:text-3xl text-xl sm:text-xl font-bold tracking-wider">
           YOU DESEREVE OUR BEST!
         </h1>
