@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Filter from "../components/Filter";
-import ProductList from "../components/ProductList";
+import Filter from "../components/products/Filter";
+import ProductList from "../components/products/ProductList";
 import TuneIcon from "@mui/icons-material/Tune";
 
 const Products = (props) => {
@@ -19,7 +19,6 @@ const Products = (props) => {
           localStorage.setItem("products", JSON.stringify(data));
           setProducts(data);
         } catch (err) {
-          // const message = (err)
           console.log(err);
         }
       }
@@ -27,18 +26,20 @@ const Products = (props) => {
   }, []);
 
   const productFilterHandler = (filteredValue) => {
-    console.log(filteredValue);
-    setProducts(
-      products.filter((item) => {
-        return item.category === filteredValue;
-      })
-    );
+    const myProducts = localStorage.getItem("products");
+    setProducts(JSON.parse(myProducts));
     console.log(products);
+    // const filteredProducts = products.filter(
+    //   (item) => item.category === filteredValue
+    //   // setProducts(filteredProducts);
+    // );
+    // console.log(filteredProducts);
   };
 
   return (
     <>
-      <div className="w-[95%] mx-auto">
+      {" "}
+      <div className="w-[95%] mx-auto scroll-smooth">
         <h1 className="mt-12 ml-7 text-2xl font-medium">All Products -</h1>
         <button
           className="mt-4 ml-7 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "

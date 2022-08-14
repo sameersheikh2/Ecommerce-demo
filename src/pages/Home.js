@@ -34,25 +34,46 @@ const Home = () => {
           rewind: true,
           autoplay: true,
           type: "loop",
-          width: "100%",
+          width: "1340px",
+          pauseOnHover: false,
           height: "700px",
           gap: "1rem",
         }}
       >
         <SplideSlide>
-          <img src={one} alt="" className="object-contain w-full h-full" />
+          <img
+            src={one}
+            alt=""
+            className="object-contain w-full h-full rounded"
+          />
         </SplideSlide>
         <SplideSlide>
-          <img src={two} alt="" className="object-contain" />
+          <img
+            src={two}
+            alt=""
+            className="object-contain w-full h-full rounded"
+          />
         </SplideSlide>
         <SplideSlide>
-          <img src={three} alt="" className="object-contain" />
+          <img
+            src={three}
+            alt=""
+            className="object-contain w-full h-full rounded"
+          />
         </SplideSlide>
         <SplideSlide>
-          <img src={four} alt="" className="object-contain" />
+          <img
+            src={four}
+            alt=""
+            className="object-contain w-full h-full rounded"
+          />
         </SplideSlide>
         <SplideSlide>
-          <img src={five} alt="" className="object-contain" />
+          <img
+            src={five}
+            alt=""
+            className="object-contain w-full h-full rounded"
+          />
         </SplideSlide>
       </Splide>
     </>

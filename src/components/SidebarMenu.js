@@ -16,14 +16,14 @@ const SidebarMenu = () => {
       {nav && (
         <div
           onClick={hideNav}
-          className="w-full h-screen fixed m-0 p-0 bg-black/80 top-0 left-0 z-10"
+          className="w-full h-[100vh] fixed m-0 p-0 bg-black/80 top-0 left-0 z-10"
         ></div>
       )}
       <div
         className={
           nav
-            ? "bg-white w-[300px] h-screen fixed z-10 top-0 left-0 duration-300 ease-in-out"
-            : "bg-white w-[300px] h-screen fixed z-10 top-0 left-[-100%] duration-300 ease-in-out"
+            ? "bg-white w-[300px] h-[100vh] fixed z-10 top-0 left-0 duration-300 ease-in-out"
+            : "bg-white w-[300px] h-[100vh] fixed z-10 top-0 left-[-100%] duration-300 ease-in-out"
         }
       >
         <AiOutlineClose
@@ -53,7 +53,7 @@ const SidebarMenu = () => {
             </li>
           </Link>
         </ul>
-        <div className="flex flex-col justify-end h-[32%] items-center text-2xl mt-6">
+        <div className="flex flex-col flex-wrap justify-end h-[32%] items-center text-2xl mt-6">
           <Link to="/login" onClick={hideNav}>
             <button className="px-4 my-1 pb-1 hover:text-white font-medium hover:bg-green-500 rounded duration-200 ease text-center">
               Login

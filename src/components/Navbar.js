@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
@@ -12,26 +13,31 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart);
   const nav = useSelector((state) => state.nav.showNav);
-  const user = useSelector((state) => state.user);
-  // const [nav, setNav] = useState(false)
+  // const user = useSelector((state) => state.user);
 
   const showNav = () => {
     dispatch(navHandler());
   };
 
   return (
-    <div className="max-w-[1640px] bg-gray-600 p-3 mx-auto flex flex-wrap justify-start items-center shadow-xl">
+    <div className="max-w-[1640px] bg-[#326789] p-3 mx-auto flex flex-wrap justify-start items-center shadow-xl">
       {/* left section */}
 
       <div className="flex flex-wrap items-center justify-between w-[100%] mx-auto">
-        <div className="flex justify-start md:justify-center flex-wrap items-center md:ml-12 sm:ml-12 ">
+        <div className="flex justify-start md:justify-center flex-wrap items-center md:ml-8 sm:ml-6 ">
           <AiOutlineMenu
             size={30}
             className="lg:hidden fill-white cursor-pointer"
             onClick={showNav}
           />
-          <h1 className="mx-5 text-center font-medium text-xl text-white">
-            <Link to="/">LOGO</Link>
+          <h1 className=" text-center font-medium text-xl text-white">
+            <Link to="/">
+              <img
+                src={logo}
+                alt=""
+                className="object-contain w-[200px] h-auto"
+              />
+            </Link>
           </h1>
           <div className="w-[200px] flex sm:w-[340px] lg:w-[500px] items-center bg-white p-1 mx-2 shadow-2xl rounded-sm">
             <input

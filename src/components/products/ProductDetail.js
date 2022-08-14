@@ -10,7 +10,7 @@ import { add } from "../../store/CartSlice";
 import Review from "./Review";
 
 const ProductDetail = () => {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState([]);
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -20,8 +20,17 @@ const ProductDetail = () => {
       .then((data) => {
         setItem(data);
       });
+    // const productDetail = localStorage.getItem("products");
+    // // const products = JSON.parse(productDetail);
+    // setItem((productDetail) =>
+    //   productDetail.filter((item) => {
+    //     return params.productId === item.id;
+    //   })
+    // );
+    // console.log(params);
+    // console.log(productDetail);
+    // console.log(products);
   }, [params]);
-  // console.log(props.product);
 
   const addToCartHandler = (item) => {
     dispatch(add(item));
@@ -42,7 +51,7 @@ const ProductDetail = () => {
           <img
             src={item.image}
             alt=""
-            className="w-full hover:scale-125 hover:ml-[5rem] duration-300 ease cursor-pointer rounded-xl h-full object-contain"
+            className="w-full hover:scale-125 hover:ml-[5rem] duration-300 hover:delay-500 ease cursor-pointer rounded-xl h-full object-contain"
           />
         </div>
         <div className="w-full p-5">
