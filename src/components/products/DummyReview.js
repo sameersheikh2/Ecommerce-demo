@@ -2,10 +2,10 @@ import React from "react";
 import { Avatar } from "@mui/material";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 
-const DummyReview = ({ review }) => {
+const DummyReview = ({ reviews }) => {
   return (
     <>
-      {review.map((review) => (
+      {reviews.map((review) => (
         <div key={review.id} className="flex flex-wrap items-start my-9">
           <div className="mr-4">
             <Avatar sx={{ width: 100, height: 100 }} />
