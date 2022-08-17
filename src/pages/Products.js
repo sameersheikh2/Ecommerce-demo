@@ -3,7 +3,7 @@ import Filter from "../components/products/Filter";
 import ProductList from "../components/products/ProductList";
 import TuneIcon from "@mui/icons-material/Tune";
 
-const Products = (props) => {
+const Products = () => {
   const [products, setProducts] = useState([]);
   const [showFilterOption, setShowFilterOption] = useState(false);
 
@@ -26,14 +26,14 @@ const Products = (props) => {
   }, []);
 
   const productFilterHandler = (filteredValue) => {
-    const myProducts = localStorage.getItem("products");
-    setProducts(JSON.parse(myProducts));
-    console.log(products);
-    // const filteredProducts = products.filter(
-    //   (item) => item.category === filteredValue
-    //   // setProducts(filteredProducts);
-    // );
-    // console.log(filteredProducts);
+    // const myProducts = localStorage.getItem("products");
+    // setProducts(JSON.parse(myProducts));
+    console.log(filteredValue);
+    const filteredProducts = products.filter((item) => {
+      return item.category === filteredValue;
+    });
+    setProducts(filteredProducts);
+    console.log(filteredProducts);
   };
 
   return (
