@@ -13,6 +13,12 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    const modalStatus = sessionStorage.setItem("modalShowed");
+    if (modalStatus) {
+      setShowModal(JSON.parse(modalStatus));
+    } else {
+      sessionStorage.setItem("modalShowed", false);
+    }
     setTimeout(() => {
       setShowModal(true);
     }, 1000);
