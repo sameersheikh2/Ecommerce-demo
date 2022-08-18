@@ -29,12 +29,10 @@ const Products = () => {
   const productFilterHandler = (filteredValue) => {
     // const myProducts = localStorage.getItem("products");
     // setProducts(JSON.parse(myProducts));
-    console.log(filteredValue);
     const filteredProducts = products.filter((item) => {
       return item.category === filteredValue;
     });
     setProducts(filteredProducts);
-    console.log(filteredProducts);
   };
 
   return (
