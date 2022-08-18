@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { useDispatch } from "react-redux/es/exports";
 import { add } from "../../store/CartSlice";
-import Review from "./Review";
+import ReviewWrapper from "./ReviewWrapper";
 
 const ProductDetail = () => {
   const [item, setItem] = useState([]);
@@ -21,7 +21,17 @@ const ProductDetail = () => {
         setItem(data);
       });
     // const productDetail = localStorage.getItem("products");
-    // // const products = JSON.parse(productDetail);
+    // const products = JSON.parse(productDetail);
+    // console.log(products);
+    // console.log(params.productId);
+    // const filteredProduct = products.filter(
+    //   (item) => item.id === params.productId
+    // );
+    // console.log(filteredProduct);
+    // setItem((item) => {
+    //   return [...item, products];
+    // });
+    // setItem((item)=>{ return [...item , products.filter((filteredItem)=> filteredItem.id === params.produtId)}])
     // setItem((productDetail) =>
     //   productDetail.filter((item) => {
     //     return params.productId === item.id;
@@ -97,7 +107,7 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className="max-w-[1320px] h-auto py-2 flex rounded-3xl shadow-3xl mx-auto justify-center flex-wrap bg-white">
-        <Review />
+        <ReviewWrapper />
       </div>
     </>
   );
