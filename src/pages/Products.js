@@ -8,7 +8,7 @@ const Products = () => {
   const [showFilterOption, setShowFilterOption] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       const allProducts = localStorage.getItem("products");
       if (allProducts) {
         setProducts(JSON.parse(allProducts));
@@ -22,7 +22,8 @@ const Products = () => {
           console.log(err);
         }
       }
-    })();
+    };
+    fetchData();
   }, []);
 
   const productFilterHandler = (filteredValue) => {
