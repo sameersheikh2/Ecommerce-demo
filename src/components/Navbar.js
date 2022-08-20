@@ -12,6 +12,9 @@ import { navHandler } from "../store/NavSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart);
+  const quantity = items.map((item) => item.quantity);
+  // console.log(quantity);
+  // console.log(items);
   const nav = useSelector((state) => state.nav.showNav);
   // const user = useSelector((state) => state.user);
 
@@ -70,7 +73,7 @@ const Navbar = () => {
         <div className="flex justify-center items-center ">
           <Link to="/cart">
             <div className="flex items-center justify-start cursor-pointer">
-              <Badge badgeContent={items.length} color="warning">
+              <Badge badgeContent={quantity.length} color="warning">
                 <ShoppingCartIcon style={{ fontSize: "30px", fill: "white" }} />
               </Badge>
               <button className=" text-[19px] px-2 font-bold text-white">

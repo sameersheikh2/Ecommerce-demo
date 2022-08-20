@@ -7,15 +7,14 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const item = useSelector((state) => state.cart);
-
-  const removeItemHandler = (item) => {
-    dispatch(remove(item));
+  const cartItem = useSelector((state) => state.cart);
+  const removeItemHandler = (cartItem) => {
+    dispatch(remove(cartItem));
   };
 
   return (
     <>
-      {item.length === 0 ? (
+      {cartItem.length === 0 ? (
         <div className="w-[30%] text-center h-[50vh] items-center flex-col justify-center mx-auto mt-28 flex">
           <ProductionQuantityLimitsIcon
             style={{ fontSize: "65px", fill: "red" }}
@@ -36,15 +35,9 @@ const Cart = () => {
             <button className="rounded px-2 h-7 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white ">
               <Link to="/products">Continue Shopping</Link>
             </button>
-            <div className="flex flex-col items-center justify-around">
-              <p className="text-2xl font-bold mb-2">Total: 0 $</p>
-              <button className="rounded px-2 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white">
-                Checkout
-              </button>
-            </div>
           </div>
           <div className="bg-white rounded-2xl shadow-2xl w-[80%] h-auto flex flex-col  mx-auto my-[65px]">
-            {item.map((item) => (
+            {cartItem.map((item) => (
               <div
                 key={item.id}
                 className="relative flex flex-col justify-evenly flex-wrap sm:flex-row p-5 my-3"
@@ -66,7 +59,7 @@ const Cart = () => {
                       </p>
                       <p className=" font-medium shadow-md rounded bg-blue-500 w-auto border-t py-1 px-2 text-center">
                         <span>Quantity: </span>
-                        {item.price?.toFixed(0)}
+                        {item.quantity}
                       </p>
                       <button
                         className="cursor-pointer hover:shadow-xl hover:scale-[1.04] duration-75 ease"
@@ -82,6 +75,12 @@ const Cart = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="flex flex-col items-center justify-around">
+            <p className="text-2xl font-bold mb-2">Total: {} $</p>
+            <button className="rounded px-2 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white">
+              Checkout
+            </button>
           </div>
         </>
       )}
