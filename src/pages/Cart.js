@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart);
+  // const total = cartItem
+  //   .map((total) => total.quantity * total.price)
+  //   .reduce((a, b) => a + b);
+  // console.log(total);
   const removeItemHandler = (cartItem) => {
     dispatch(remove(cartItem));
   };
@@ -77,7 +81,13 @@ const Cart = () => {
             ))}
           </div>
           <div className="flex flex-col items-center justify-around">
-            <p className="text-2xl font-bold mb-2">Total: {} $</p>
+            <p className="text-2xl font-bold mb-2">
+              Total:{" "}
+              {cartItem
+                .map((total) => total.quantity * total.price)
+                .reduce((a, b) => a + b)}{" "}
+              $
+            </p>
             <button className="rounded px-2 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white">
               Checkout
             </button>
