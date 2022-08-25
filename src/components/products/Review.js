@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar } from "@mui/material";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 
-const DummyReview = ({ reviews }) => {
+const Review = ({ reviews }) => {
   return (
     <>
       {reviews.map((review) => (
@@ -27,4 +27,4 @@ const DummyReview = ({ reviews }) => {
   );
 };
 
-export default DummyReview;
+export default Review;
