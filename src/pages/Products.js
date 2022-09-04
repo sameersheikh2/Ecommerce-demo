@@ -3,12 +3,14 @@ import Filter from "../components/products/Filter";
 import ProductList from "../components/products/ProductList";
 import TuneIcon from "@mui/icons-material/Tune";
 import Close from "@mui/icons-material/Close";
+// import { useParams } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [filterProduct, setFilterProduct] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("");
   const [showFilterOption, setShowFilterOption] = useState(false);
+  // const params = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,15 +58,16 @@ const Products = () => {
     <>
       <div className="w-[100%] mx-auto scroll-smooth">
         <h1 className="mt-1 ml-7 text-2xl font-medium">All Products -</h1>
-        <button
-          className="mt-3 ml-7 bg-white/80 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "
-          onClick={() => {
-            setShowFilterOption(!showFilterOption);
-          }}
-        >
-          <TuneIcon style={{ fontSize: "17px", marginTop: "0px" }} /> Filter
-        </button>
-
+        <div className="flex justify-end w-[95%]">
+          <button
+            className="mt-3 ml-7 bg-white/80 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "
+            onClick={() => {
+              setShowFilterOption(!showFilterOption);
+            }}
+          >
+            <TuneIcon style={{ fontSize: "17px", marginTop: "0px" }} /> Filter
+          </button>
+        </div>
         <div className="flex mt-3 mb-3 items-start w-[95%] m-auto flex-col justify-start">
           <button
             className="bg-white/80 rounded-lg shadow-4xl px-[6px] font-semibold"

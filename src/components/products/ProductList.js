@@ -12,7 +12,7 @@ const ProductList = ({ product }) => {
   };
 
   return (
-    <div className="cursor-pointer bg-white rounded-xl py-3 h-auto relative my-12 flex items-center justify-center flex-col w-[400px] group hover:scale-[1.02] ease-in-out duration-200 shadow-xl">
+    <div className="cursor-pointer bg-white  py-3 h-auto relative flex items-center justify-center flex-col w-[400px] group">
       <button
         title="add to cart"
         className="absolute hidden top-3 right-5 hover:scale-110 duration-200 ease group-hover:block"
