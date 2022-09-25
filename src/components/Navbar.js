@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -8,21 +8,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineMenu } from "react-icons/ai";
 import SidebarMenu from "./SidebarMenu";
 import { navHandler } from "../store/NavSlice";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const [itemsInCart, setItemsInCart] = useState(0);
   const items = useSelector((state) => state.cart);
   const nav = useSelector((state) => state.nav.showNav);
 
   const showNav = () => {
     dispatch(navHandler());
   };
-
-  const itemsIntoCart = () => {
-    if (items.length !== 0) {
-      return items.map((item) => item.quantity).reduce((a, b) => a + b);
-    }
-  };
+  useEffect(() => {
+    setItemsInCart(() => {
+      return items.map((item) => item.quantity).reduce((a, b) => a + b, 0);
+    });
+  }, [items]);
 
   return (
     <div className="max-w-[1640px] bg-[#326789] p-3 mx-auto flex flex-wrap justify-start items-center shadow-xl">
@@ -75,7 +76,7 @@ const Navbar = () => {
         <div className="flex justify-center items-center ">
           <Link to="/cart">
             <div className="flex items-center justify-start cursor-pointer">
-              <Badge badgeContent={itemsIntoCart()} color="warning">
+              <Badge badgeContent={itemsInCart} color="warning">
                 <ShoppingCartIcon style={{ fontSize: "30px", fill: "white" }} />
               </Badge>
               <button className=" text-[19px] px-2 font-bold text-white">
