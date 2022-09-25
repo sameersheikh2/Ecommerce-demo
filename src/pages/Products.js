@@ -20,7 +20,7 @@ const Products = () => {
         setFilterProduct(JSON.parse(allProducts));
       } else {
         try {
-          const res = await fetch("https://fakestoreapi.com/products");
+          const res = await fetch("http://localhost:9000/api/products");
           const data = await res.json();
           localStorage.setItem("products", JSON.stringify(data));
           setProducts(data);
@@ -37,7 +37,7 @@ const Products = () => {
     setSelectedFilter(filterValue);
     try {
       const res = await fetch(
-        `https://fakestoreapi.com/products/category/${filterValue}`
+        `https://fakestoreapi.com/api/products/category/${filterValue}`
       );
       const data = await res.json();
       setFilterProduct(data);
@@ -47,48 +47,42 @@ const Products = () => {
   };
 
   useEffect(() => {
-    if (selectedFilter !== "") {
-      setFilterProduct(filterProduct);
-    } else {
+    if (selectedFilter === "") {
       setFilterProduct(products);
     }
-  }, [selectedFilter, products, filterProduct]);
+  }, [selectedFilter, products]);
 
   return (
-    <>
-      <div className="w-[100%] mx-auto scroll-smooth">
-        <h1 className="mt-1 ml-7 text-2xl font-medium">All Products -</h1>
-        <div className="flex justify-end w-[95%]">
-          <button
-            className="mt-3 ml-7 bg-white/80 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "
-            onClick={() => {
-              setShowFilterOption(!showFilterOption);
-            }}
-          >
-            <TuneIcon style={{ fontSize: "17px", marginTop: "0px" }} /> Filter
-          </button>
-        </div>
-        <div className="flex mt-3 mb-3 items-start w-[95%] m-auto flex-col justify-start">
-          <button
-            className="bg-white/80 rounded-lg shadow-4xl px-[6px] font-semibold"
-            onClick={() => {
-              setSelectedFilter("");
-            }}
-          >
-            {selectedFilter.length > 1 && (
-              <Close style={{ fontSize: "22px" }} />
-            )}
-            {selectedFilter.toUpperCase()}
-          </button>
-          {showFilterOption && <Filter onFilter={productFilterHandler} />}
-        </div>
-        <div className="flex flex-wrap justify-center">
-          {filterProduct.map((product) => (
-            <ProductList product={product} key={product.id} />
-          ))}
-        </div>
+    <div className="w-[100%] mx-auto scroll-smooth">
+      <h1 className="mt-1 ml-7 text-2xl font-medium">All Products -</h1>
+      <div className="flex justify-end w-[95%]">
+        <button
+          className="mt-3 ml-7 bg-white/80 text-base font-medium flex items-center rounded-lg shadow-3xl px-3 "
+          onClick={() => {
+            setShowFilterOption(!showFilterOption);
+          }}
+        >
+          <TuneIcon style={{ fontSize: "17px", marginTop: "0px" }} /> Filter
+        </button>
       </div>
-    </>
+      <div className="flex mt-3 mb-3 items-start w-[100%] m-auto flex-col justify-start">
+        <button
+          className="bg-white/80 rounded-lg shadow-4xl px-[6px] font-semibold"
+          onClick={() => {
+            setSelectedFilter("");
+          }}
+        >
+          {selectedFilter.length > 1 && <Close style={{ fontSize: "22px" }} />}
+          {selectedFilter.toUpperCase()}
+        </button>
+        {showFilterOption && <Filter onFilter={productFilterHandler} />}
+      </div>
+      <div className="flex flex-wrap justify-center ">
+        {filterProduct.map((product) => (
+          <ProductList product={product} key={product.id} />
+        ))}
+      </div>
+    </div>
   );
 };
 
