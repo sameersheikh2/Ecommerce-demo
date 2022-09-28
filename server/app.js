@@ -9,7 +9,7 @@ app.use(cors());
 async function connect() {
   try {
     await mongoose.connect(
-      "mongodb://sameersheikh1:sheikh.mongodb@mystore.00cjup1.mongodb.net/?retryWrites=true&w=majority"
+      "mongodb+srv://sameersheikh1:sheikh.mongodb1@mystore.00cjup1.mongodb.net/?retryWrites=true&w=majority"
     );
     console.log("connected");
   } catch (error) {
