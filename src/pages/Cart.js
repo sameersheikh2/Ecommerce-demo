@@ -8,10 +8,6 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart);
-  // const total = cartItem
-  //   .map((total) => total.quantity * total.price)
-  //   .reduce((a, b) => a + b);
-  // console.log(total);
   const removeItemHandler = (cartItem) => {
     dispatch(remove(cartItem));
   };
@@ -19,11 +15,11 @@ const Cart = () => {
   return (
     <>
       {cartItem.length === 0 ? (
-        <div className="w-[30%] text-center h-[50vh] items-center flex-col justify-center mx-auto mt-28 flex">
+        <div className="w-[30%] text-center h-[83vh] items-center flex-col justify-center mx-auto mt-18 flex">
           <ProductionQuantityLimitsIcon
             style={{ fontSize: "65px", fill: "red" }}
           />
-          <p className="text-2xl p-2">
+          <h3 className="text-2xl p-2">
             Your Cart is empty. Add some items from{" "}
             <Link
               to="/products"
@@ -31,11 +27,11 @@ const Cart = () => {
             >
               here.
             </Link>
-          </p>
+          </h3>
         </div>
       ) : (
         <>
-          <div className="w-[80%]  mt-7 h-auto flex items-center justify-between mx-auto">
+          <div className="w-[80%] my-7 h-auto flex items-center justify-between mx-auto">
             <button className="rounded px-2 h-7 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white ">
               <Link to="/products">Continue Shopping</Link>
             </button>
@@ -57,14 +53,14 @@ const Cart = () => {
                   </div>
                   <div>
                     <div className="flex mt-6 justify-between items-center ">
-                      <p className=" font-medium shadow-md rounded bg-green-500 w-auto border-t py-1 px-2 text-center">
+                      <span className=" font-medium shadow-md rounded bg-green-500 w-auto border-t py-1 px-2 text-center">
                         <span>Price: </span>
                         {item.price?.toFixed(0)}$
-                      </p>
-                      <p className=" font-medium shadow-md rounded bg-blue-500 w-auto border-t py-1 px-2 text-center">
+                      </span>
+                      <span className=" font-medium shadow-md rounded bg-blue-500 w-auto border-t py-1 px-2 text-center">
                         <span>Quantity: </span>
                         {item.quantity}
-                      </p>
+                      </span>
                       <button
                         className="cursor-pointer hover:shadow-xl hover:scale-[1.04] duration-75 ease"
                         onClick={() => removeItemHandler(item)}
@@ -80,14 +76,15 @@ const Cart = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col items-center justify-around">
-            <p className="text-2xl font-bold mb-2">
-              Total:{" "}
+          <div className="flex flex-col pb-11 items-center justify-around">
+            <span className="text-2xl font-bold mb-2">
+              Total:
               {cartItem
                 .map((total) => total.quantity * total.price)
-                .reduce((a, b) => a + b)}{" "}
+                .reduce((a, b) => a + b)
+                .toFixed(0)}
               $
-            </p>
+            </span>
             <button className="rounded px-2 shadow-4xl text-base hover:bg-[#E65c4f] duration-200 ease bg-white hover:text-white">
               Checkout
             </button>

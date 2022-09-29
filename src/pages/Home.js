@@ -17,7 +17,7 @@ const Home = () => {
     if (modalStatus) {
       setShowModal(JSON.parse(modalStatus));
     } else {
-      sessionStorage.setItem("modalShowed", false);
+      sessionStorage.setItem("modalShowed", "false");
       setTimeout(() => {
         setShowModal(true);
       }, 1000);

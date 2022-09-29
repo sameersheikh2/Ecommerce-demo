@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ProductDetail from "./ProductDetail";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { add } from "../../store/CartSlice";
 import { useDispatch } from "react-redux";
@@ -12,7 +11,7 @@ const ProductList = ({ product }) => {
   };
 
   return (
-    <div className="cursor-pointer bg-white  py-3 h-auto relative flex items-center justify-center flex-col w-[400px] group">
+    <div className="cursor-pointer bg-white py-3 h-auto relative flex items-center justify-center flex-col w-[400px] group">
       <button
         title="add to cart"
         className="absolute hidden top-3 right-5 hover:scale-110 duration-200 ease group-hover:block"
@@ -30,11 +29,7 @@ const ProductList = ({ product }) => {
           }}
         />
       </button>
-      <Link
-        to={`/products/${product.id}`}
-        key={product.id}
-        element={<ProductDetail />}
-      >
+      <Link to={`/products/${product.id}`} key={product.id}>
         <div className="flex flex-col items-center">
           <div className="w-[150px]">
             <img
@@ -46,9 +41,9 @@ const ProductList = ({ product }) => {
           <div className="flex flex-col h-auto items-center flex-wrap my-4 py-2">
             <h2 className="text-[15px] px-2 font-bold">{product.title}</h2>
             <div className="py-2">
-              <p className="text-green-600 font-medium">
+              <span className="text-green-600 font-medium">
                 $ {product.price?.toFixed(0)}
-              </p>
+              </span>
             </div>
           </div>
         </div>

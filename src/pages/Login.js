@@ -15,10 +15,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col p-10 my-20 flex-wrap lg:w-[40%] md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl">
+    <div className="h-[75vh]">
       <form
         onSubmit={submitHandler}
-        className="flex flex-col flex-wrap px-9 w-full h-auto"
+        className="flex flex-col p-10 my-20 flex-wrap bg-white lg:w-[40%] md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl"
       >
         <label htmlFor="email" className="my-2 text-base text-gray-600">
           Email
