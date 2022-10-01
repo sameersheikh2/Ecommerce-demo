@@ -1,16 +1,17 @@
 const express = require("express");
 const app = express();
-const products = require("./products.json");
 const cors = require("cors");
 const port = 9000;
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const productsRoute = require("./routes/product");
+
 app.use(cors());
+dotenv.config();
 
 async function connect() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://sameersheikh1:sheikh.mongodb1@mystore.00cjup1.mongodb.net/?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.DB_URI);
     console.log("connected");
   } catch (error) {
     console.error(error);
@@ -18,25 +19,11 @@ async function connect() {
 }
 connect();
 
-app.get("/api/products", (req, res) => {
-  res.json(products);
-});
+app.use("/api/products", productsRoute);
 
-app.get("/api/products/:id", (req, res) => {
-  res.json(
-    products.filter((product) => {
-      return product.id === parseInt(req.params.id);
-    })
-  );
-});
+app.use("/api/products/:id", productsRoute);
 
-app.get("/api/products/category/:productCategory", (req, res) => {
-  res.json(
-    products.filter((product) => {
-      return product.category === req.params.productCategory;
-    })
-  );
-});
+app.use("/api/products/category/:productCategory", productsRoute);
 
 app.listen(port, () => {
   // listen to  req.

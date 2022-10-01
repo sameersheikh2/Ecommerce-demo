@@ -37,7 +37,7 @@ const Products = () => {
     setSelectedFilter(filterValue);
     try {
       const res = await fetch(
-        `https://fakestoreapi.com/api/products/category/${filterValue}`
+        `http://localhost:9000/api/products/category/${filterValue}`
       );
       const data = await res.json();
       setFilterProduct(data);
