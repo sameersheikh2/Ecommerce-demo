@@ -21,10 +21,6 @@ connect();
 
 app.use("/api/products", productsRoute);
 
-app.use("/api/products/:id", productsRoute);
-
-app.use("/api/products/category/:productCategory", productsRoute);
-
 app.listen(port, () => {
   // listen to  req.
   console.log(`Example app listening on port ${port}`);
