@@ -1,28 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signUp } from "../store/userSlice";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validPass, setValidPass] = useState(true);
+  const [emailNotExist, setEmailNotExist] = useState(true);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const nameChangeHandler = (e) => {
-    setName(e.target.value);
-  };
-
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
-  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -31,27 +17,49 @@ const Signup = () => {
       return setValidPass(false);
     } else {
       setValidPass(true);
-      const data = {
+      const userData = {
         id: Math.random(),
         name: name,
         email: email,
         password: password,
       };
+      fetch("http://localhost:9000/api/users/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      })
+        .then((res) => {
+          if (res.ok === true) {
+            setEmailNotExist(true);
+            return res.json();
+          } else {
+            setEmailNotExist(false);
+            return res.json();
+          }
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-      dispatch(signUp(data));
-      setName("");
-      setEmail("");
-      setPassword("");
-      navigate("/login");
+      // dispatch(signUp(userData));
+      if (!emailNotExist) {
+        setName("");
+        setEmail("");
+        setPassword("");
+        navigate("/login");
+      }
     }
     // Validataion if needed
   };
 
   return (
-    <div className="flex flex-col sm:p-1 p-5 lg:p-10 my-20 flex-wrap md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl">
+    <div className="h-[75vh]">
       <form
         onSubmit={submitHandler}
-        className="flex flex-col flex-wrap px-9 w-full h-auto"
+        className="flex flex-col p-10 bg-white my-20 flex-wrap lg:w-[40%] md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl"
       >
         <label htmlFor="name" className="text-gray-600 my-2 text-base">
           Name
@@ -62,7 +70,9 @@ const Signup = () => {
           id="name"
           className="p-1 px-2 outline-none border-none rounded bg-gray-200/60 focus:bg-gray-300"
           placeholder="name"
-          onChange={nameChangeHandler}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
           value={name}
         />
         <label htmlFor="email" className="text-gray-600 my-2 text-base">
@@ -72,11 +82,22 @@ const Signup = () => {
           required
           type="email"
           id="email"
-          className="p-1 px-2 outline-none border-none rounded bg-gray-200/60 focus:bg-gray-300"
+          className={
+            emailNotExist
+              ? "p-1 px-2 outline-none border-none rounded bg-gray-200/60"
+              : "p-1 px-2 outline-none border-none rounded bg-red-400 outline-red-500"
+          }
           placeholder="email"
-          onChange={emailChangeHandler}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           value={email}
         />
+        {!emailNotExist && (
+          <p className="mt-1 text-red-400 font-semibold">
+            Email already registered.
+          </p>
+        )}
         <label htmlFor="password" className="text-gray-600 my-2 text-base">
           Password
         </label>
@@ -90,16 +111,22 @@ const Signup = () => {
               : "p-1 px-2 outline-none border-none rounded bg-red-400 outline-red-500"
           }
           placeholder="password"
-          onChange={passwordChangeHandler}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
           value={password}
         />
-        {!validPass && <p>Password should be at least 6 charecter.</p>}
+        {!validPass && (
+          <p className="mt-1 text-red-400 font-semibold">
+            Password should be at least 6 charecter.
+          </p>
+        )}
         <button className="flex w-[4rem] justify-center my-4 text-white font-medium rounded-lg p-1 bg-blue-500 hover:bg-blue-600">
           Sign up
         </button>
         <div>
           <p>
-            Already Register ?{" "}
+            Already Register ?
             <Link to="/login" className="hover:underline hover:text-blue-500">
               Login here.
             </Link>
