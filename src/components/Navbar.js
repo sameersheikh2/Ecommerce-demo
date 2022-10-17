@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,16 +10,23 @@ import { AiOutlineMenu } from "react-icons/ai";
 import SidebarMenu from "./SidebarMenu";
 import { navHandler } from "../store/NavSlice";
 import { useEffect } from "react";
+import { signOut } from "../store/userSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const [itemsInCart, setItemsInCart] = useState(0);
   const items = useSelector((state) => state.cart);
   const nav = useSelector((state) => state.nav.showNav);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
 
   const showNav = () => {
     dispatch(navHandler());
   };
+
+  const signOutHandler = () => {
+    dispatch(signOut());
+  };
+
   useEffect(() => {
     setItemsInCart(() => {
       return items.map((item) => item.quantity).reduce((a, b) => a + b, 0);
@@ -60,7 +68,7 @@ const Navbar = () => {
               }}
             />
           </div>
-          {
+          {!loggedIn ? (
             <Link to="/login" className="lg:inline hidden">
               <div className="bg-white mx-5 px-12 cursor-pointer rounded-sm shadow-sm ">
                 <button className=" text-gray-500 text-xl font-medium my-[4px] ">
@@ -68,7 +76,37 @@ const Navbar = () => {
                 </button>
               </div>
             </Link>
-          }
+          ) : (
+            <div>
+              <button className="peer text-white">
+                <AccountCircleIcon
+                  style={{ fontSize: "30px", fill: "white", margin: "5px" }}
+                />
+                My profile
+              </button>
+              <div className="bg-white hidden peer-hover:block hover:block rounded absolute top-[59px] z-40 divide-y divide-red-500">
+                <ul className=" w-full rounded">
+                  <li className="cursor-pointer px-5 py-1 hover:bg-gray-200">
+                    Account
+                  </li>
+                  <li className="cursor-pointer px-5 py-1 hover:bg-gray-200">
+                    Wishlist
+                  </li>
+                  <li className="cursor-pointer px-5 py-1 hover:bg-gray-200">
+                    Setting
+                  </li>
+                </ul>
+                <div className="text-center w-full p-1">
+                  <button
+                    className="w-full cursor-pointer px-5 py-2 hover:text-red-400"
+                    onClick={signOutHandler}
+                  >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* right section */}
@@ -79,9 +117,9 @@ const Navbar = () => {
               <Badge badgeContent={itemsInCart} color="warning">
                 <ShoppingCartIcon style={{ fontSize: "30px", fill: "white" }} />
               </Badge>
-              <button className=" text-[19px] px-2 font-bold text-white">
+              <span className=" text-[19px] px-2 font-bold text-white">
                 Cart
-              </button>
+              </span>
             </div>
           </Link>
         </div>
