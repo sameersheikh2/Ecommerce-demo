@@ -29,13 +29,12 @@ const Signup = () => {
         body: JSON.stringify(userData),
       })
         .then((res) => {
-          if (res.ok === true) {
+          if (!res.ok) {
             setEmailNotExist(true);
             return res.json();
-          } else {
-            setEmailNotExist(false);
-            return res.json();
           }
+          setEmailNotExist(false);
+          return res.json();
         })
         .then((data) => {
           console.log(data);
@@ -43,14 +42,13 @@ const Signup = () => {
         .catch((err) => {
           console.log(err);
         });
-
-      // dispatch(signUp(userData));
-      if (!emailNotExist) {
+      if (emailNotExist) {
         setName("");
         setEmail("");
         setPassword("");
-        navigate("/login");
+        // navigate("/login");
       }
+      // dispatch(signUp(userData));
     }
     // Validataion if needed
   };

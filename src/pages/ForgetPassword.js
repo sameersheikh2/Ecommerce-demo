@@ -15,16 +15,18 @@ const ForgetPassword = () => {
       body: JSON.stringify(userEmail),
     })
       .then((res) => {
-        if (res.ok) {
-          setAccountFound(false);
+        if (!res.ok) {
+          setAccountFound(true);
           return res.json();
         }
-        setAccountFound(true);
+        console.log("running");
+        setAccountFound(false);
         return res.json();
       })
       .then((data) => setUser(data))
-      .catch((err) => console.log("error is ", err));
+      .catch((err) => console.log(err));
   };
+  console.log(user);
 
   return (
     <>
@@ -33,7 +35,9 @@ const ForgetPassword = () => {
         onSubmit={findAccountHandler}
       >
         <h1 className="mb-6 text-lg">Find your account</h1>
-        <label htmlFor="email">Enter your email</label>
+        <label htmlFor="email">
+          {!user.email ? "Enter your email" : "Create a new password"}
+        </label>
         <input
           type="email"
           required
