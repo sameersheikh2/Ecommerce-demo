@@ -13,11 +13,7 @@ router.post("/create", async (req, res) => {
     userName: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    wishlist: {
-      title: req.body.wishlist.title,
-      price: req.body.price,
-      description: req.body.description,
-    },
+    wishlist: {},
   });
   try {
     userData.save();
@@ -41,7 +37,7 @@ router.get("/", async (req, res) => {
 router.post("/account/find", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user !== null) {
-    res.status(200).send(user);
+    res.status(200).json(user);
     return;
   }
   res.status(400).json({ message: "Email dosen't match any account" });
