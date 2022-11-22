@@ -8,12 +8,7 @@ const ForgetPassword = () => {
 
   const findAccountHandler = (e) => {
     e.preventDefault();
-    const userEmail = { email: email };
-    fetch("http://localhost:9000/api/users/account/find", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userEmail),
-    })
+    fetch(`http://localhost:9000/api/users/account/find/${email}`)
       .then((res) => {
         if (!res.ok) {
           setAccountFound(true);
@@ -36,7 +31,7 @@ const ForgetPassword = () => {
       >
         <h1 className="mb-6 text-lg">Find your account</h1>
         <label htmlFor="email">
-          {!user.email ? "Enter your email" : "Create a new password"}
+          {!user.email ? "Enter your email" : "Enter new password"}
         </label>
         <input
           type="email"
@@ -57,9 +52,11 @@ const ForgetPassword = () => {
           <button className="w-[7rem] p-[2px] text-center rounded-3xl border border-gray-400 mt-4 hover:text-blue-500 hover:border-blue-500 text-sm">
             <Link to="/login">Back to login</Link>
           </button>
-          <button className="w-[7rem] p-[2px] text-center rounded-3xl border border-gray-400 mt-4 hover:text-blue-500 hover:border-blue-500 text-sm">
-            Next
-          </button>
+          {
+            <button className="w-[7rem] p-[2px] text-center rounded-3xl border border-gray-400 mt-4 hover:text-blue-500 hover:border-blue-500 text-sm">
+              Next
+            </button>
+          }
         </div>
       </form>
     </>
