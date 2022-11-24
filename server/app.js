@@ -23,7 +23,7 @@ async function connect() {
 connect();
 
 app.use("/api/products", productsRoute);
-app.use("/api/users/create", userDataRoute);
+app.use("/api/users", userDataRoute);
 
 app.listen(port, () => {
   // listen to  req.
