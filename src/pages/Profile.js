@@ -4,42 +4,33 @@ const Profile = () => {
   const [pincode, setPincode] = useState("");
   const [pincodeData, setPincodeData] = useState([]);
 
-  // const filterCategories = Array.from(
-  //   new Set(
-  //     pincodeData.map((itemCategory) => {
-  //       return itemCategory.District;
-  //     })
-  //   )
-  // );
-  // console.log(filterCategories);
-
   const pincodeHandler = (e) => {
     e.preventDefault();
     setPincode(e.target.value);
   };
 
   useEffect(() => {
-    fetch(`https://api.postalpincode.in/pincode/${pincode}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPincodeData(data);
-      });
-    // const fetchData = async () => {
-    //   const res = await fetch(
-    //     `https://api.postalpincode.in/pincode/${pincode}`
-    //   );
-    //   const data = res.json();
-    //   setPincodeData(data);
-    // };
-    // fetchData();
+    if (pincode !== "") {
+      fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data[0].Status === "Error") {
+            return alert("zip code not found");
+          }
+          setPincodeData(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [pincode]);
-  console.log(pincodeData);
+  // console.log(pincodeData);
 
   return (
     <>
       <div className="flex flex-col p-5 mt-14 mb-10 flex-wrap bg-white lg:w-[50%] md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl">
         <div className="flex justify-between my-3">
-          <span>Name: name here</span>
+          <span>Name: name </span>
           <span>Email: sameersheikh819@gmail.com</span>
         </div>
         <div>
@@ -48,14 +39,27 @@ const Profile = () => {
       </div>
 
       <div className="flex flex-col p-5 mb-14 flex-wrap bg-white lg:w-[50%] md:w-[40%] sm:w-[50%] h-auto mx-auto shadow-4xl">
-        <span>Address</span>
-        <span>City</span>
         <div className="flex items-center justify-between flex-wrap">
           <div>
-            <span className="mr-1">State</span>
-            <select name="state" id="">
-              <option value="">d</option>
-            </select>
+            <span className="mr-1">
+              State:
+              <span
+                className="bg-gray-200 ml-1 p-1 w-auto
+        text-gray-500 font-medium tex1t-center rounded"
+              >
+                {
+                  new Set(
+                    pincodeData
+                      .map((data) => {
+                        return data.PostOffice.map((s) => {
+                          return s.State;
+                        });
+                      })
+                      .flat()
+                  )
+                }
+              </span>
+            </span>
           </div>
           <div>
             <label htmlFor="pincode">Pin Code</label>
@@ -67,6 +71,26 @@ const Profile = () => {
             />
           </div>
         </div>
+        <span>Address</span>
+        <span>
+          City:
+          <span
+            className="bg-gray-200 ml-1 p-1 w-[15%]
+        text-gray-500 font-medium text-center rounded"
+          >
+            {
+              new Set(
+                pincodeData
+                  .map((data) => {
+                    return data.PostOffice.map((s) => {
+                      return s.District;
+                    });
+                  })
+                  .flat()
+              )
+            }
+          </span>
+        </span>
       </div>
     </>
   );
